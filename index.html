@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NewAPI - Premium Entry</title>
+  <title>购买入口 - 商城导购版</title>
   <style>
     * {
       margin: 0;
@@ -15,40 +15,30 @@
       --bg: #ffffff;
       --text: #0f172a;
       --muted: #667085;
-      --muted-2: #98a2b3;
       --line: #ebeef2;
       --line-strong: #e4e7ec;
-      --panel: #fbfbfc;
-      --panel-soft: #f8fafc;
       --primary: #2563eb;
-
-      --blue-tint-1: #f8fbff;
-      --blue-tint-2: #eef5ff;
-      --blue-line: #dbe7ff;
-      --blue-highlight: linear-gradient(90deg, #93c5fd 0%, #60a5fa 100%);
-
-      --gold-tint-1: #fffdf8;
-      --gold-tint-2: #fff8eb;
-      --gold-line: #f2e4bf;
-
-      --slate-tint-1: #fbfbfc;
-      --slate-tint-2: #f4f6f8;
-      --slate-line: #dfe3e8;
+      --primary-dark: #1d4ed8;
+      --gold: #f59e0b;
+      --gold-dark: #d97706;
+      --success: #16a34a;
 
       --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04);
       --shadow-md: 0 12px 32px rgba(16, 24, 40, 0.08);
+      --shadow-lg: 0 20px 48px rgba(16, 24, 40, 0.12);
 
-      --radius-xl: 24px;
+      --radius-xl: 26px;
       --radius-lg: 20px;
       --radius-md: 16px;
-      --radius-sm: 12px;
     }
 
     html, body {
       width: 100%;
       min-height: 100%;
       overflow-x: hidden;
-      background: radial-gradient(circle at top, #fafcff 0%, #ffffff 42%);
+      background:
+        radial-gradient(circle at top, #f8fbff 0%, #ffffff 40%),
+        linear-gradient(180deg, #ffffff 0%, #fcfcfd 100%);
       color: var(--text);
     }
 
@@ -65,132 +55,68 @@
     }
 
     .page {
-      max-width: 1120px;
+      max-width: 1160px;
       margin: 0 auto;
-      padding: 36px 22px 52px;
+      padding: 28px 22px 56px;
     }
 
-    .top {
-      padding: 10px 0 34px;
-      border-bottom: 1px solid var(--line);
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #e8eef8;
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(37,99,235,0.10) 0%, rgba(37,99,235,0) 26%),
+        radial-gradient(circle at 75% 30%, rgba(245,158,11,0.10) 0%, rgba(245,158,11,0) 18%),
+        linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      box-shadow: var(--shadow-md);
+      padding: 34px 32px 28px;
+      margin-bottom: 24px;
     }
 
-    .label {
+    .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      height: 32px;
-      padding: 0 12px;
-      border: 1px solid var(--line);
+      height: 34px;
+      padding: 0 14px;
       border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      color: #475467;
-      margin-bottom: 18px;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255,255,255,0.88);
+      border: 1px solid #e5edf8;
       box-shadow: var(--shadow-sm);
-    }
-
-    .title {
-      font-size: 54px;
-      line-height: 1.04;
-      letter-spacing: -2px;
+      color: #1d4ed8;
+      font-size: 12px;
       font-weight: 800;
-      max-width: 860px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    .desc {
+    .hero h1 {
+      font-size: 48px;
+      line-height: 1.06;
+      letter-spacing: -1.8px;
+      font-weight: 850;
+      color: #101828;
+      max-width: 860px;
+      margin-bottom: 14px;
+    }
+
+    .hero p {
       max-width: 760px;
       color: var(--muted);
       font-size: 16px;
-      line-height: 1.95;
+      line-height: 1.9;
+      margin-bottom: 22px;
     }
 
-    .entry {
-      padding: 30px 0 34px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .entry-grid {
-      display: grid;
-      grid-template-columns: 1.45fr 0.55fr;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .endpoint,
-    .quick,
-    .path-card {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .endpoint::before,
-    .quick::before,
-    .path-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0) 34%);
-      pointer-events: none;
-    }
-
-    .endpoint {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      background: linear-gradient(180deg, #ffffff 0%, #fcfcfd 100%);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .endpoint-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 16px 18px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(248, 250, 252, 0.8);
-      backdrop-filter: blur(6px);
-    }
-
-    .endpoint-head .left {
-      font-size: 13px;
-      font-weight: 700;
-      color: #344054;
-    }
-
-    .endpoint-head .right {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .endpoint-body {
-      padding: 18px;
-    }
-
-    .url-box {
-      width: 100%;
-      height: 52px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: #f8fafc;
-      color: #101828;
-      padding: 0 16px;
-      font-size: 14px;
-      outline: none;
-      margin-bottom: 12px;
-    }
-
-    .actions {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 12px;
     }
 
-    .btn {
-      height: 44px;
-      padding: 0 16px;
+    .hero-btn {
+      min-height: 48px;
+      padding: 0 18px;
       border-radius: 999px;
       border: 1px solid var(--line-strong);
       background: rgba(255,255,255,0.96);
@@ -198,480 +124,1005 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 8px;
       font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all .18s ease;
-      white-space: nowrap;
+      font-weight: 800;
+      box-shadow: var(--shadow-sm);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-btn.primary {
+      color: #fff;
+      border-color: var(--primary-dark);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      box-shadow: 0 14px 28px rgba(37, 99, 235, 0.24);
+    }
+
+    .hero-btn.gold {
+      color: #fff;
+      border-color: var(--gold-dark);
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      box-shadow: 0 14px 28px rgba(245, 158, 11, 0.24);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .endpoint-box,
+    .benefit-box,
+    .tips-section,
+    .usage-section {
+      border-radius: 24px;
+      border: 1px solid #e9eef5;
+      background: rgba(255,255,255,0.84);
+      backdrop-filter: blur(10px);
       box-shadow: var(--shadow-sm);
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
+    .endpoint-box {
+      padding: 18px;
     }
 
-    .btn-primary {
+    .endpoint-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .endpoint-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #344054;
+    }
+
+    .endpoint-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .url-combo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 60px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f8fafc 0%, #f4f7fb 100%);
+      margin-bottom: 12px;
+    }
+
+    .url-value {
+      flex: 1;
+      min-width: 0;
+      padding: 0 12px;
+      font-size: 15px;
+      color: #111827;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .copy-inline-btn {
+      height: 44px;
+      padding: 0 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.92);
+      color: #111827;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .copy-inline-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+    }
+
+    .endpoint-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mini-btn {
+      height: 42px;
+      padding: 0 15px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: #fff;
+      color: #111827;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .mini-btn.dark {
       background: #111827;
       color: #fff;
       border-color: #111827;
     }
 
-    .quick {
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      background: linear-gradient(180deg, #fcfcfd 0%, #f8fafc 100%);
+    .benefit-box {
       padding: 18px;
-      box-shadow: var(--shadow-sm);
     }
 
-    .quick h3 {
+    .benefit-box h3 {
       font-size: 14px;
-      font-weight: 800;
-      margin-bottom: 10px;
-      color: #101828;
-    }
-
-    .quick ul {
-      list-style: none;
-    }
-
-    .quick li {
-      padding: 11px 0;
-      border-top: 1px solid var(--line);
-      color: #475467;
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .quick li:first-child {
-      border-top: none;
-      padding-top: 0;
-    }
-
-    .section {
-      padding: 34px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .section:last-child {
-      border-bottom: none;
-    }
-
-    .section-title {
-      font-size: 15px;
       font-weight: 800;
       color: #111827;
       margin-bottom: 10px;
-      letter-spacing: -0.2px;
     }
 
-    .section-desc {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.9;
-      max-width: 760px;
-      margin-bottom: 20px;
-    }
-
-    .three-cols {
+    .benefit-list {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      gap: 10px;
     }
 
-    .info {
-      padding: 4px 4px;
-    }
-
-    .info h4 {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: #101828;
-    }
-
-    .info p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.9;
-    }
-
-    .path-cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .path-card {
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 22px;
-      box-shadow: var(--shadow-sm);
-      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-    }
-
-    .path-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .path-card.featured {
-      background: linear-gradient(180deg, var(--blue-tint-1) 0%, var(--blue-tint-2) 100%);
-      border-color: var(--blue-line);
-    }
-
-    .path-card.featured::after {
-      content: "";
-      position: absolute;
-      left: 22px;
-      right: 22px;
-      top: 0;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--blue-highlight);
-      opacity: 0.95;
-    }
-
-    .path-card.discount {
-      background: linear-gradient(180deg, var(--gold-tint-1) 0%, var(--gold-tint-2) 100%);
-      border-color: var(--gold-line);
-    }
-
-    .path-card.enterprise {
-      background: linear-gradient(180deg, var(--slate-tint-1) 0%, var(--slate-tint-2) 100%);
-      border-color: var(--slate-line);
-    }
-
-    .path-card.featured .path-badge {
-      background: rgba(255,255,255,0.72);
-      border-color: #d7e5ff;
-      color: #315ea8;
-    }
-
-    .path-card.discount .path-badge {
-      background: rgba(255,255,255,0.72);
-      border-color: #f0dfb7;
-      color: #8a6721;
-    }
-
-    .path-card.enterprise .path-badge {
-      background: rgba(255,255,255,0.72);
-      border-color: #d7dde3;
-      color: #475467;
-    }
-
-    .path-top {
+    .benefit-item {
       display: flex;
-      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: #475467;
+      line-height: 1.75;
+    }
+
+    .benefit-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    .section {
+      padding: 12px 0 34px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 14px;
       margin-bottom: 14px;
     }
 
-    .path-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      align-self: flex-start;
-      height: 28px;
-      padding: 0 11px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.1px;
-      border: 1px solid transparent;
-    }
-
-    .path-card h3 {
-      font-size: 22px;
-      line-height: 1.2;
-      font-weight: 750;
-      color: #101828;
-      letter-spacing: -0.4px;
-    }
-
-    .path-card p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.9;
-      min-height: 88px;
-      margin-bottom: 16px;
-    }
-
-    .path-meta {
+    .section-left {
       display: flex;
+      align-items: center;
+      gap: 10px;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 20px;
     }
 
-    .meta-chip {
+    .section-badge {
       display: inline-flex;
       align-items: center;
       height: 28px;
       padding: 0 10px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.72);
-      border: 1px solid rgba(255,255,255,0.88);
-      color: #667085;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #dbeafe;
       font-size: 12px;
-      font-weight: 600;
-      backdrop-filter: blur(4px);
+      font-weight: 800;
     }
 
-    .path-link {
+    .section-title {
+      font-size: 24px;
+      font-weight: 850;
+      color: #111827;
+      letter-spacing: -0.4px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+      margin-bottom: 20px;
+      max-width: 760px;
+    }
+
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .shop-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      border-radius: 26px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+
+    .shop-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .shop-card.main {
+      background: linear-gradient(180deg, #f8fbff 0%, #eef5ff 100%);
+      border-color: #dbe7ff;
+    }
+
+    .shop-card.discount {
+      background: linear-gradient(180deg, #fffdf8 0%, #fff7e8 100%);
+      border-color: #f3dfad;
+    }
+
+    .shop-card.biz {
+      background: linear-gradient(180deg, #fbfbfc 0%, #f4f6f8 100%);
+      border-color: #dfe3e8;
+    }
+
+    .ribbon,
+    .ribbon-gold {
+      position: absolute;
+      top: 12px;
+      right: -34px;
+      transform: rotate(35deg);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 40px;
+      z-index: 2;
+      letter-spacing: .2px;
+    }
+
+    .ribbon {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+    }
+
+    .ribbon-gold {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      box-shadow: 0 8px 18px rgba(245, 158, 11, 0.24);
+    }
+
+    .shop-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-right: 34px;
+    }
+
+    .shop-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
+    }
+
+    .shop-icon svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .shop-icon.main {
+      background: linear-gradient(180deg, #ffffff 0%, #e8f1ff 100%);
+      border: 1px solid #d7e7ff;
+      color: var(--primary);
+    }
+
+    .shop-icon.discount {
+      background: linear-gradient(180deg, #fffaf1 0%, #ffe9c7 100%);
+      border: 1px solid #f7dba0;
+      color: var(--gold-dark);
+    }
+
+    .shop-icon.biz {
+      background: linear-gradient(180deg, #ffffff 0%, #edf2f7 100%);
+      border: 1px solid #dce3ea;
+      color: #475467;
+    }
+
+    .shop-name {
+      font-size: 22px;
+      line-height: 1.2;
+      font-weight: 800;
+      color: #101828;
+      letter-spacing: -0.4px;
+    }
+
+    .shop-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .shop-tag {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      color: #111827;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 10px 14px;
-      border: 1px solid rgba(255,255,255,0.9);
+      height: 28px;
+      padding: 0 10px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.76);
-      backdrop-filter: blur(8px);
-      transition: all .18s ease;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.92);
+      background: rgba(255,255,255,0.78);
+      color: #475467;
     }
 
-    .path-link:hover {
-      background: rgba(255,255,255,0.94);
+    .adv-box {
+      border: 1px solid rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.68);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .adv-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 10px;
+    }
+
+    .adv-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .adv-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: #475467;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .adv-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #60a5fa;
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    .adv-dot.gold {
+      background: #f59e0b;
+    }
+
+    .adv-dot.gray {
+      background: #94a3b8;
+    }
+
+    .shop-footer {
+      margin-top: auto;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.94);
+      background: rgba(255,255,255,0.88);
+      color: #111827;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .cta-btn:hover {
       transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(16, 24, 40, 0.06);
+      background: rgba(255,255,255,0.96);
     }
 
-    .path-link span {
-      color: var(--primary);
+    .cta-btn.main {
+      color: #fff;
+      border-color: var(--primary-dark);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      box-shadow: 0 14px 28px rgba(37, 99, 235, 0.20);
+    }
+
+    .cta-btn.gold {
+      color: #fff;
+      border-color: var(--gold-dark);
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      box-shadow: 0 14px 28px rgba(245, 158, 11, 0.20);
+    }
+
+    .cta-btn span {
       transition: transform .18s ease;
     }
 
-    .path-card:hover .path-link span {
+    .cta-btn:hover span {
       transform: translateX(2px);
     }
 
-    .compliance {
+    .market-grid {
       display: grid;
       gap: 10px;
-      color: var(--muted);
+    }
+
+    .market-entry {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.94);
+      background: rgba(255,255,255,0.8);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .market-entry:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(16, 24, 40, 0.06);
+      background: rgba(255,255,255,0.95);
+    }
+
+    .market-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .mini-platform {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .mini-platform.taobao {
+      background: linear-gradient(135deg, #ff7a00 0%, #ff4d00 100%);
+    }
+
+    .mini-platform.rednote {
+      background: linear-gradient(135deg, #ff4d6d 0%, #ff6b81 100%);
+    }
+
+    .market-name {
       font-size: 14px;
-      line-height: 1.95;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 3px;
     }
 
-    .compliance ul {
+    .market-desc {
+      font-size: 12px;
+      color: #667085;
+      line-height: 1.55;
+    }
+
+    .market-tag {
+      display: inline-flex;
+      align-items: center;
+      height: 26px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid #efefef;
+      color: #475467;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .tips-section {
+      margin-top: 18px;
+      padding: 20px;
+    }
+
+    .tips-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 12px;
+    }
+
+    .tips-list {
+      display: grid;
+      gap: 10px;
+      color: #475467;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .tips-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .tips-item i {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #111827;
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    .usage-section {
+      margin-top: 8px;
+      padding: 22px 20px;
+    }
+
+    .usage-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 12px;
+    }
+
+    .usage-content {
+      display: grid;
+      gap: 10px;
+      color: #475467;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .usage-content ul {
       margin-left: 18px;
+      color: #475467;
     }
 
-    .compliance a {
+    .usage-content a {
       color: var(--primary);
       text-decoration: underline;
       font-weight: 600;
     }
 
-    @media (max-width: 920px) {
-      .title {
-        font-size: 40px;
+    .toast-wrap {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast {
+      min-width: 240px;
+      max-width: 360px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.72);
+      background: rgba(17, 24, 39, 0.88);
+      color: #fff;
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(14px);
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: opacity .22s ease, transform .22s ease;
+      pointer-events: auto;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast-title {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .toast-text {
+      font-size: 13px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.82);
+      word-break: break-all;
+    }
+
+    @media (max-width: 980px) {
+      .hero h1 {
+        font-size: 38px;
         letter-spacing: -1.2px;
       }
 
-      .entry-grid,
-      .three-cols,
-      .path-cards {
+      .hero-grid,
+      .shop-grid {
         grid-template-columns: 1fr;
-      }
-
-      .path-card p {
-        min-height: auto;
       }
     }
 
     @media (max-width: 640px) {
       .page {
-        padding: 24px 16px 30px;
+        padding: 18px 16px 40px;
       }
 
-      .title {
-        font-size: 31px;
+      .hero {
+        border-radius: 24px;
+        padding: 22px 18px 18px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
         letter-spacing: -0.8px;
       }
 
-      .desc {
-        font-size: 15px;
-      }
-
-      .actions {
+      .hero-actions,
+      .endpoint-actions,
+      .cta-row {
         flex-direction: column;
+        align-items: stretch;
       }
 
-      .btn {
+      .hero-btn,
+      .mini-btn,
+      .cta-btn,
+      .copy-inline-btn {
         width: 100%;
       }
 
-      .path-card {
-        padding: 18px;
-        border-radius: 20px;
+      .url-combo {
+        flex-direction: column;
+        align-items: stretch;
       }
 
-      .path-card h3 {
+      .shop-card {
+        padding: 18px;
+        border-radius: 22px;
+      }
+
+      .shop-head {
+        padding-right: 18px;
+      }
+
+      .shop-name {
         font-size: 20px;
+      }
+
+      .ribbon,
+      .ribbon-gold {
+        top: 10px;
+        right: -40px;
+        font-size: 10px;
+        padding: 6px 42px;
+      }
+
+      .market-entry {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .toast-wrap {
+        top: 14px;
+        left: 14px;
+        right: 14px;
+      }
+
+      .toast {
+        min-width: auto;
+        max-width: none;
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
+  <div class="toast-wrap" id="toastWrap"></div>
+
   <main class="page">
-    <section class="top">
-      <div class="label">Developer Entry</div>
-      <h1 class="title">把模型调用整理成一个统一、清晰、可长期维护的入口。</h1>
-      <p class="desc">
-        面向开发者、工作流与业务系统的 AI 接入首页。你可以在这里快速获取接口地址、查看文档、
-        进入控制台，并根据使用规模选择更合适的接入方式。
+    <section class="hero">
+      <div class="hero-badge">购买导航 · 多入口下单</div>
+      <h1>选择适合你的购买方式，快速下单，稳定开通。</h1>
+      <p>
+        提供官方自助商城、优惠渠道入口与团队企业对接三种方式。
+        可根据你的购买习惯、预算需求和合作规模，选择更适合的下单路径。
       </p>
+
+      <div class="hero-actions">
+        <a href="https://your-domain.com/buy" target="_blank" class="hero-btn primary">官方购买入口</a>
+        <a href="#discount-channel" class="hero-btn gold">查看限时优惠</a>
+        <a href="mailto:support@your-domain.com" class="hero-btn">企业咨询</a>
+      </div>
+
+      <div class="hero-grid">
+        <div class="endpoint-box">
+          <div class="endpoint-label">
+            <div class="endpoint-title">接口地址</div>
+            <div class="endpoint-note">OpenAI Compatible</div>
+          </div>
+
+          <div class="url-combo">
+            <div class="url-value" id="apiUrlText">https://your-domain.com/v1</div>
+            <button class="copy-inline-btn" onclick="copyApi()" aria-label="复制地址">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <rect x="9" y="9" width="10" height="10" rx="2"></rect>
+                <path d="M5 15V7a2 2 0 0 1 2-2h8"></path>
+              </svg>
+              复制地址
+            </button>
+          </div>
+
+          <div class="endpoint-actions">
+            <a href="https://your-domain.com/docs" target="_blank" class="mini-btn">查看文档</a>
+            <a href="https://your-domain.com/console" target="_blank" class="mini-btn dark">进入控制台</a>
+          </div>
+        </div>
+
+        <div class="benefit-box">
+          <h3>购买优势</h3>
+          <div class="benefit-list">
+            <div class="benefit-item"><span class="benefit-dot"></span>支持自助购买，流程更直接</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>多平台入口可选，便于比价</div>
+            <div class="benefit-item"><span class="benefit-dot"></span>支持售后协助与企业沟通</div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="entry">
-      <div class="entry-grid">
-        <div class="endpoint">
-          <div class="endpoint-head">
-            <div class="left">API Endpoint</div>
-            <div class="right">OpenAI Compatible</div>
+    <section class="section">
+      <div class="section-head">
+        <div class="section-left">
+          <span class="section-badge">导购推荐</span>
+          <div class="section-title">购买渠道</div>
+        </div>
+      </div>
+
+      <p class="section-desc">
+        不同渠道适合不同用户：如果你想快速开通，推荐直接使用官方自助商城；
+        如果你更关注活动与优惠，可优先查看渠道入口；
+        如需团队采购、长期合作或系统接入，可选择企业咨询。
+      </p>
+
+      <div class="shop-grid">
+        <div class="shop-card main">
+          <div class="ribbon">官方推荐</div>
+
+          <div class="shop-head">
+            <div class="shop-icon main">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 8h12l-1 10H7L6 8Z"></path>
+                <path d="M9 8a3 3 0 0 1 6 0"></path>
+              </svg>
+            </div>
+            <div class="shop-name">自助商城</div>
           </div>
-          <div class="endpoint-body">
-            <input id="apiUrl" class="url-box" type="text" value="https://your-domain.com/v1" readonly />
-            <div class="actions">
-              <button class="btn" onclick="copyApi()">复制地址</button>
-              <a href="https://your-domain.com/docs" target="_blank" class="btn">查看文档</a>
-              <a href="https://your-domain.com/console" target="_blank" class="btn btn-primary">进入控制台</a>
+
+          <div class="shop-tags">
+            <span class="shop-tag">官方推荐</span>
+            <span class="shop-tag">自动发货</span>
+            <span class="shop-tag">稳定开通</span>
+          </div>
+
+          <div class="adv-box">
+            <div class="adv-title">适合人群</div>
+            <div class="adv-list">
+              <div class="adv-item"><span class="adv-dot"></span>想快速下单并立即开始使用的用户</div>
+              <div class="adv-item"><span class="adv-dot"></span>希望流程直接、购买步骤更少的用户</div>
+              <div class="adv-item"><span class="adv-dot"></span>适合日常补量、长期稳定复购场景</div>
+            </div>
+          </div>
+
+          <div class="shop-footer">
+            <div class="cta-row">
+              <a href="https://your-domain.com/buy" target="_blank" class="cta-btn main">
+                立即前往购买 <span>→</span>
+              </a>
             </div>
           </div>
         </div>
 
-        <div class="quick">
-          <h3>快速说明</h3>
+        <div class="shop-card discount" id="discount-channel">
+          <div class="ribbon-gold">限时优惠</div>
+
+          <div class="shop-head">
+            <div class="shop-icon discount">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 10h16"></path>
+                <path d="M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"></path>
+                <rect x="5" y="10" width="14" height="9" rx="2"></rect>
+              </svg>
+            </div>
+            <div class="shop-name">渠道优惠</div>
+          </div>
+
+          <div class="shop-tags">
+            <span class="shop-tag">平台购买</span>
+            <span class="shop-tag">优惠活动</span>
+            <span class="shop-tag">售后协助</span>
+          </div>
+
+          <div class="adv-box">
+            <div class="adv-title">适合人群</div>
+            <div class="adv-list">
+              <div class="adv-item"><span class="adv-dot gold"></span>喜欢在熟悉平台内完成下单的用户</div>
+              <div class="adv-item"><span class="adv-dot gold"></span>希望对比活动力度与价格优惠的用户</div>
+              <div class="adv-item"><span class="adv-dot gold"></span>适合结合平台习惯选择购买入口</div>
+            </div>
+          </div>
+
+          <div class="shop-footer">
+            <div class="market-grid">
+              <a href="#" target="_blank" class="market-entry">
+                <div class="market-left">
+                  <div class="mini-platform taobao">淘</div>
+                  <div>
+                    <div class="market-name">淘宝</div>
+                    <div class="market-desc">入口熟悉，适合常规下单与活动比价</div>
+                  </div>
+                </div>
+                <div class="market-tag">去看看</div>
+              </a>
+
+              <a href="#" target="_blank" class="market-entry">
+                <div class="market-left">
+                  <div class="mini-platform rednote">薯</div>
+                  <div>
+                    <div class="market-name">红薯</div>
+                    <div class="market-desc">适合内容导购与口碑参考，选择更灵活</div>
+                  </div>
+                </div>
+                <div class="market-tag">去看看</div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="shop-card biz">
+          <div class="shop-head">
+            <div class="shop-icon biz">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="7" width="16" height="12" rx="2"></rect>
+                <path d="M9 7V5h6v2"></path>
+                <path d="M4 12h16"></path>
+              </svg>
+            </div>
+            <div class="shop-name">团队 / 企业</div>
+          </div>
+
+          <div class="shop-tags">
+            <span class="shop-tag">专属对接</span>
+            <span class="shop-tag">团队采购</span>
+            <span class="shop-tag">定制支持</span>
+          </div>
+
+          <div class="adv-box">
+            <div class="adv-title">适合人群</div>
+            <div class="adv-list">
+              <div class="adv-item"><span class="adv-dot gray"></span>有团队协作、统一采购或权限管理需求</div>
+              <div class="adv-item"><span class="adv-dot gray"></span>有项目接入、长期使用或合作沟通需求</div>
+              <div class="adv-item"><span class="adv-dot gray"></span>适合中大型业务、系统集成与定制支持</div>
+            </div>
+          </div>
+
+          <div class="shop-footer">
+            <div class="cta-row">
+              <a href="mailto:support@your-domain.com" class="cta-btn">
+                联系企业咨询 <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tips-section">
+        <div class="tips-title">下单建议</div>
+        <div class="tips-list">
+          <div class="tips-item"><i></i><div>如果你希望最快完成购买，优先选择 <strong>自助商城</strong>。</div></div>
+          <div class="tips-item"><i></i><div>如果你更在意平台活动与优惠力度，优先查看 <strong>渠道优惠</strong>。</div></div>
+          <div class="tips-item"><i></i><div>如果你是团队、公司或有长期合作需求，建议直接走 <strong>企业咨询</strong>。</div></div>
+        </div>
+      </div>
+
+      <div class="usage-section">
+        <div class="usage-title">使用说明</div>
+        <div class="usage-content">
+          <p>
+            平台仅支持合法、合规、正当用途。请勿利用 AI 服务从事仿冒、欺诈、谣言传播、
+            违法低俗内容生成等违规行为。
+          </p>
           <ul>
-            <li>统一 API 接入，兼容主流调用方式</li>
-            <li>支持开发测试与生产环境使用</li>
-            <li>适合个人开发、团队协作与正式项目</li>
+            <li>禁止用于误导传播、违规营销和灰黑产场景</li>
+            <li>禁止冒充他人或组织实施违规行为</li>
+            <li>禁止生成违法、暴力、色情等违规内容</li>
+            <li>平台将依据规则和法律法规处理违规使用行为</li>
           </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-title">核心说明</div>
-      <p class="section-desc">
-        平台以统一协议、清晰入口和更低的接入成本为核心，适合从个人开发到正式业务系统的持续使用。
-      </p>
-      <div class="three-cols">
-        <div class="info">
-          <h4>统一协议</h4>
-          <p>减少多模型适配带来的重复开发工作，用更一致的方式维护接口调用逻辑。</p>
-        </div>
-        <div class="info">
-          <h4>更易维护</h4>
-          <p>适合脚本、小型应用、工作流自动化以及正式项目接入，不必频繁调整结构。</p>
-        </div>
-        <div class="info">
-          <h4>面向长期使用</h4>
-          <p>不是一次性的测试入口，而是更适合长期迭代和业务接入的统一接入层。</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-title">接入路径</div>
-      <p class="section-desc">
-        根据当前阶段选择更合适的开通方式。无论是快速开始、长期调用，还是团队协作，都可以找到对应入口。
-      </p>
-
-      <div class="path-cards">
-        <div class="path-card featured">
-          <div class="path-top">
-            <span class="path-badge">推荐</span>
-            <h3>控制台直充</h3>
-          </div>
           <p>
-            适合希望快速上线的开发者与项目团队。开通路径直接，进入控制台后即可完成密钥管理、额度使用与接口接入。
+            更多要求可参考
+            <a href="https://www.cac.gov.cn/" target="_blank">相关政策说明</a>
           </p>
-          <div class="path-meta">
-            <span class="meta-chip">快速开通</span>
-            <span class="meta-chip">适合个人开发</span>
-            <span class="meta-chip">生产可用</span>
-          </div>
-          <a href="https://your-domain.com/console" target="_blank" class="path-link">
-            立即进入 <span>→</span>
-          </a>
         </div>
-
-        <div class="path-card discount">
-          <div class="path-top">
-            <span class="path-badge">优惠</span>
-            <h3>渠道优惠</h3>
-          </div>
-          <p>
-            适合中高频使用场景。可结合活动或合作渠道选择更灵活的购买方式，在保障可用性的同时优化整体成本。
-          </p>
-          <div class="path-meta">
-            <span class="meta-chip">适合长期使用</span>
-            <span class="meta-chip">更灵活优惠</span>
-            <span class="meta-chip">按活动选择</span>
-          </div>
-          <a href="#" target="_blank" class="path-link">
-            了解详情 <span>→</span>
-          </a>
-        </div>
-
-        <div class="path-card enterprise">
-          <div class="path-top">
-            <span class="path-badge">企业</span>
-            <h3>团队 / 企业</h3>
-          </div>
-          <p>
-            面向团队协作、企业项目和中大型系统集成。可根据调用规模、权限管理与合作方式进一步沟通接入方案。
-          </p>
-          <div class="path-meta">
-            <span class="meta-chip">团队协作</span>
-            <span class="meta-chip">企业集成</span>
-            <span class="meta-chip">定制沟通</span>
-          </div>
-          <a href="mailto:support@your-domain.com" class="path-link">
-            联系咨询 <span>→</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-title">使用说明</div>
-      <div class="compliance">
-        <p>
-          平台仅支持合法、合规、正当用途。请勿利用 AI 服务从事仿冒、欺诈、谣言传播、
-          违法低俗内容生成等违规行为。
-        </p>
-        <ul>
-          <li>禁止用于误导传播、违规营销和灰黑产场景</li>
-          <li>禁止冒充他人或组织实施违规行为</li>
-          <li>禁止生成违法、暴力、色情等违规内容</li>
-          <li>平台将依据规则和法律法规处理违规使用行为</li>
-        </ul>
-        <p>
-          更多要求可参考
-          <a href="https://www.cac.gov.cn/" target="_blank">相关政策说明</a>
-        </p>
       </div>
     </section>
   </main>
 
   <script>
-    function copyApi() {
-      const input = document.getElementById('apiUrl');
-      navigator.clipboard.writeText(input.value).then(() => {
-        alert('接口地址已复制：' + input.value);
-      }).catch(() => {
-        alert('复制失败，请手动复制。');
+    function showToast(title, text) {
+      const wrap = document.getElementById('toastWrap');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `
+        <div class="toast-title">${title}</div>
+        <div class="toast-text">${text}</div>
+      `;
+      wrap.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add('show');
       });
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+          toast.remove();
+          sendHeight();
+        }, 220);
+      }, 2200);
+    }
+
+    async function copyApi() {
+      const text = document.getElementById('apiUrlText').textContent.trim();
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('复制成功', '接口地址已复制：' + text);
+      } catch (e) {
+        showToast('复制失败', '当前环境不支持自动复制，请手动复制接口地址。');
+      }
     }
 
     function sendHeight() {
       const height = document.documentElement.scrollHeight;
-      parent.postMessage({ type: 'embed-height', height }, '*');
+      if (window.parent && window.parent !== window) {
+        parent.postMessage({ type: 'embed-height', height }, '*');
+      }
     }
 
     window.addEventListener('load', sendHeight);
